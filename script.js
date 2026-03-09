@@ -32,7 +32,7 @@ const pulseSection = (id) => {
 
   window.setTimeout(() => {
     section.classList.remove('section-ping');
-  }, 900);
+  }, 1400);
 };
 
 navLinks.forEach((link) => {

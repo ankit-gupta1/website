@@ -47,9 +47,10 @@ body {
   justify-content: space-between;
   gap: 1rem;
   padding: 1rem 0;
-  backdrop-filter: blur(6px);
-  background: color-mix(in srgb, var(--bg) 86%, white 14%);
+  backdrop-filter: none;
+  background: var(--bg);
   border-bottom: 1px solid var(--line);
+  box-shadow: 0 6px 16px rgba(17, 27, 33, 0.06);
 }
 
 .brand {
@@ -67,15 +68,16 @@ body {
 
 .topbar a {
   text-decoration: none;
-  color: var(--muted);
+  color: var(--accent);
+  font-weight: 600;
   font-size: 0.92rem;
   border-bottom: 1px dashed transparent;
 }
 
 .topbar a:hover,
 .topbar a:focus-visible {
-  color: var(--text);
-  border-bottom-color: var(--text);
+  color: var(--accent);
+  border-bottom-color: var(--accent);
 }
 
 main {
@@ -98,7 +100,8 @@ section[id] {
   transition:
     border-color 520ms ease,
     box-shadow 520ms ease,
-    background-color 520ms ease;
+    background-color 520ms ease,
+    transform 520ms ease;
 }
 
 .panel.section-ping {
@@ -107,6 +110,33 @@ section[id] {
   box-shadow:
     0 0 0 5px rgba(10, 123, 82, 0.3),
     0 16px 38px rgba(10, 123, 82, 0.17);
+}
+
+.panel:hover {
+  border-color: #18865d;
+  box-shadow:
+    0 0 0 2px rgba(24, 134, 93, 0.2),
+    0 14px 34px rgba(14, 16, 20, 0.08);
+  transform: translateY(-1px);
+}
+
+.panel p,
+.panel li {
+  text-align: justify;
+  text-justify: inter-word;
+}
+
+.contact-list li {
+  text-align: left;
+}
+
+.panel.compact-panel {
+  padding: 1rem;
+}
+
+.panel.compact-panel .entry {
+  margin-top: 0.8rem;
+  padding-top: 0.8rem;
 }
 
 .hero {
@@ -147,7 +177,7 @@ h3 {
 
 .subtitle {
   margin-top: 0.6rem;
-  max-width: 72ch;
+  max-width: none;
 }
 
 .cursor {
@@ -316,7 +346,6 @@ a {
 
 @media (max-width: 640px) {
   .topbar {
-    position: static;
     padding-top: 1.1rem;
     flex-direction: column;
     align-items: flex-start;
@@ -334,5 +363,9 @@ a {
 
   .panel {
     transition: none;
+  }
+
+  .panel:hover {
+    transform: none;
   }
 }
