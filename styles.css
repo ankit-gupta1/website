@@ -6,6 +6,7 @@
   --line: #d6cfbe;
   --accent: #0a7b52;
   --accent-soft: #d7efe5;
+  --topbar-bg: #edf6f2;
 }
 
 * {
@@ -19,7 +20,7 @@ html {
 body {
   margin: 0;
   font-family: "IBM Plex Mono", monospace;
-  background: radial-gradient(circle at 85% 10%, #eefaf5 0%, #f7f5ef 36%, #f0ebde 100%);
+  background: var(--topbar-bg);
   color: var(--text);
   line-height: 1.62;
 }
@@ -30,7 +31,7 @@ body {
   pointer-events: none;
   background-image: radial-gradient(rgba(0, 0, 0, 0.04) 0.5px, transparent 0.5px);
   background-size: 4px 4px;
-  opacity: 0.25;
+  opacity: 0;
 }
 
 .container {
@@ -42,15 +43,27 @@ body {
   position: sticky;
   top: 0;
   z-index: 30;
+  width: 100%;
+  background: var(--topbar-bg);
+  border-bottom: 1px solid var(--line);
+  box-shadow: 0 6px 16px rgba(17, 27, 33, 0.06);
+  isolation: isolate;
+}
+
+.topbar::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--topbar-bg);
+}
+
+.topbar-inner {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
   padding: 1rem 0;
-  backdrop-filter: none;
-  background: var(--bg);
-  border-bottom: 1px solid var(--line);
-  box-shadow: 0 6px 16px rgba(17, 27, 33, 0.06);
 }
 
 .brand {
@@ -72,6 +85,15 @@ body {
   font-weight: 600;
   font-size: 0.92rem;
   border-bottom: 1px dashed transparent;
+  background: transparent;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.topbar a:visited,
+.topbar a:active,
+.topbar a:focus-visible,
+.topbar a:hover {
+  background: transparent;
 }
 
 .topbar a:hover,
@@ -345,7 +367,7 @@ a {
 }
 
 @media (max-width: 640px) {
-  .topbar {
+  .topbar-inner {
     padding-top: 1.1rem;
     flex-direction: column;
     align-items: flex-start;
