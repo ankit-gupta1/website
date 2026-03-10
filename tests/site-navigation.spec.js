@@ -85,15 +85,18 @@ test.describe('Website behavior', () => {
         const section = document.getElementById(id);
         const heading = section.querySelector('h1, h2, h3').getBoundingClientRect();
         const viewportHeight = window.innerHeight;
+        const navLink = document.querySelector(`.topbar nav a[href="#${id}"]`);
 
         return {
           hash: window.location.hash,
           headingVisible: heading.top >= header.bottom - 1 && heading.top <= viewportHeight - 8,
+          navCurrent: navLink?.classList.contains('is-current') === true,
         };
       }, item);
 
       expect(state.hash).toBe(`#${item.id}`);
       expect(state.headingVisible).toBe(true);
+      expect(state.navCurrent).toBe(true);
     }
   });
 
@@ -115,9 +118,9 @@ test.describe('Website behavior', () => {
       };
     });
 
-    expect(state.heroFontPx).toBeLessThan(36);
+    expect(state.heroFontPx).toBeLessThan(33);
     expect(state.subtitleAlign).toBe('left');
     expect(state.factAlign).toBe('left');
-    expect(state.navFontPx).toBeLessThan(15);
+    expect(state.navFontPx).toBeLessThan(13.5);
   });
 });
